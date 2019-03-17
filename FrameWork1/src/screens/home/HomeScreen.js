@@ -27,12 +27,12 @@ class HomeScreen extends Component {
 HomeScreen.navigationOptions = {
   title: "Home",
   headerStyle: {
-    backgroundColor: "#f4511e"
+    backgroundColor: "#f4511e",
   },
   headerTintColor: "#fff",
   headerTitleStyle: {
     fontWeight: "bold"
-  }
+  },
 };
 
 export default HomeScreen;

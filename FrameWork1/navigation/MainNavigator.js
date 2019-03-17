@@ -6,6 +6,7 @@ const AppNavigator = createStackNavigator(
     Home: HomeScreen,
     Test: TestScreen
   },
+  {headerLayoutPreset: "center"},
   {
     initialRouteName: "Home"
   }
