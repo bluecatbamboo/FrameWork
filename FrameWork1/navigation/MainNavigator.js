@@ -1,8 +1,9 @@
-import { HomeScreen, TestScreen } from "../src/screens";
+import { HomeScreen, TestScreen, TestReduxScreen } from "../src/screens";
 import { createStackNavigator } from "react-navigation";
 
 const AppNavigator = createStackNavigator(
   {
+    TestRedux: TestReduxScreen,
     Home: HomeScreen,
     Test: TestScreen
   },
