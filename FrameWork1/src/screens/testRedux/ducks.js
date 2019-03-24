@@ -1,48 +1,43 @@
 import { combineReducers } from "redux";
-
+import get from "lodash/get";
 export const NAME = "TSET_REDUCER";
 
+// action types
 export const ADD_TODO = "ADD_TODO";
-export const TOGGLE_TODO = "TOGGLE_TODO";
-export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER";
+export const DELETE_TODO = "DELETE_TODO";
 
-/*
- * other constants
- */
-
-export const VisibilityFilters = {
-  SHOW_ALL: "SHOW_ALL",
-  SHOW_COMPLETED: "SHOW_COMPLETED",
-  SHOW_ACTIVE: "SHOW_ACTIVE"
-};
-
-/*
- * action creators
- */
-
+// Action Creators
 export function addTodo(text) {
-  console.log("i am add fun");
   return { type: ADD_TODO, text };
 }
 
-export function toggleTodo(index) {
-  return { type: TOGGLE_TODO, index };
+export function deleteTodo(name) {
+  return { type: DELETE_TODO, name };
 }
 
-export function setVisibilityFilter(filter) {
-  return { type: SET_VISIBILITY_FILTER, filter };
-}
-
-const TodoListReducer = "TODO_LIST";
-export const TodoList = (state = {}, action) => {
+const TodoListReducerName = "TODO_LIST";
+// todolist reducer
+export const todoListReducer = (state = [], action) => {
+  //action like  {type: "ADD_TODO", text: "Eat"}
   switch (action.type) {
     case ADD_TODO:
-      return { test: action.text };
+      return [...state, action.text];
+    case DELETE_TODO:
+      const newState = [];
+      state.forEach(item => {
+        if (item !== action.name) {
+          newState.push(item);
+        }
+      });
+      return newState;
     default:
       return state;
   }
 };
 
+export const getTodoList = state =>
+  get(state, `${NAME}.${TodoListReducerName}`);
+
 export default combineReducers({
-  [TodoListReducer]: TodoList
+  [TodoListReducerName]: todoListReducer
 });

@@ -8,7 +8,7 @@ const AppNavigator = createStackNavigator(
     Test: TestScreen
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "TestRedux"
   }
 );
 export default AppNavigator;

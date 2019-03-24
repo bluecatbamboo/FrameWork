@@ -108,3 +108,61 @@
 - npm run android
 
 \*android sdk location might cause problem when run android, local.properties in android might help
+
+# redux
+
+## Connect Redux in Project
+
+1. create Store
+   ![store](./readMeImage/store.png)
+
+2. make the store available to all container components in the application
+
+   > [The option we recommend is to use a special React Redux component called `<Provider>` to `magically` make the store available to all container components in the application without passing it explicitly. You only need to use it once when you render the root component:](https://redux.js.org/basics/usage-with-react#passing-the-store)
+
+   ![connectStore](./readMeImage/connectStore.png)
+
+3. add reducer
+
+   > Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe what happened, but don't describe how the application's state changes.
+
+   ![reducer](./readMeImage/reducer.png)
+
+4. add actions
+   see TestRedux/ducks.js
+
+5. use in Screen
+
+- import connect from react-redux
+
+  ```js
+  import { connect } from "react-redux";
+  ```
+
+- connect mapStateToProps and mapDispatchToProps in Screen
+
+  mapStateToProps will return some value which in store (like string, arr, obj, number)
+
+  mapDispatchToProps will return some function
+  (action) which want to change store value or include fetch api
+
+  ```js
+  const mapStateToProps = state => {
+    console.log(state); // log store
+    return {
+      todoList: getTodoList(state) || []
+    };
+  };
+
+  const mapDispatchToProps = {
+    addTodo //addTodo = addTodo:addTodo
+  };
+
+  TestReduxScreen = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TestReduxScreen);
+  ```
+
+  log store
+  ![storeLog](./readMeImage/storeLog.png)
