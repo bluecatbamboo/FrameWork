@@ -9,7 +9,7 @@ const AppNavigator = createStackNavigator(
   },
   {headerLayoutPreset: "center"},
   {
-    initialRouteName: "Home"
+    initialRouteName: "TestRedux"
   }
 );
 export default AppNavigator;
