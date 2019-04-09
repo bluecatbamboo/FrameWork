@@ -3,6 +3,8 @@ import { View, FlatList, Button, TextInput, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { addTodo, getTodoList } from "./ducks";
 import TodoItem from "./TodoItem";
+import { generateSecureRandom } from 'react-native-securerandom';
+var base64 = require('binaryToBase64');
 
 class TestReduxScreen extends PureComponent {
   //defalut state
@@ -47,7 +49,8 @@ class TestReduxScreen extends PureComponent {
         {!!this.state.text && (
           <Button
             onPress={() => {
-              addTodo(this.state.text);
+              generateSecureRandom(16).then(bytes => addTodo(base64(bytes)));
+              //addTodo(base64(bytes));
               this.clearInput();
             }}
             title="confirm"
